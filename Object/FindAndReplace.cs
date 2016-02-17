@@ -31,7 +31,9 @@ namespace FindReplaceProject.Objects
     }
     public string Replace()
     {
+      string output = this.GetLongString().Replace(this.GetFirstString(), this.GetSecondString());
 
+      return output;
     }
   }
 }
