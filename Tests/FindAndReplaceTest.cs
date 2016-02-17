@@ -5,9 +5,9 @@ namespace FindReplaceProject.Objects
   public class FindAndReplaceTest
   {
     [Fact]
-    public void testReplace_hellototheworldworlduniverse_hellothereworld()
+    public void testReplace_hellotheworldworlduniverse_hellothereworld()
     {
-      FindAndReplace newFindAndReplace = new FindAndReplace ("hello to the world", "to the", "there");
+      FindAndReplace newFindAndReplace = new FindAndReplace ("hello the world", "the", "there");
       Assert.Equal(newFindAndReplace.Replace(), "hello there world");
     }
       [Fact]
@@ -27,6 +27,12 @@ namespace FindReplaceProject.Objects
     {
       FindAndReplace newFindAndReplace = new FindAndReplace("hello world.", "world", "planet");
       Assert.Equal(newFindAndReplace.Replace(), "hello planet.");
+    }
+    [Fact]
+    public void testReplace_specialCharacters()
+    {
+      FindAndReplace newFindAndReplace = new FindAndReplace("He said #BlackLivesMatter!", "BlackLivesMatter", "BLM");
+      Assert.Equal(newFindAndReplace.Replace(), "He said #BLM!");
     }
   }
 }

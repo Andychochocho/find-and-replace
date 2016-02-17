@@ -31,26 +31,34 @@ namespace FindReplaceProject.Objects
     }
     public string Replace()
     {
+      string[] specialCharacter = {"!","@","#","$","%","^","&","*","_","-","+","=", " ", "."};
       string output = "";
       string longString = this.GetLongString();
       string firstString = this.GetFirstString();
       string secondString = this.GetSecondString();
       int firstStringLength = firstString.Length;
+      string dummyFirst = "";
+      string dummySecond = "";
 
       if (longString.IndexOf(firstString) == 0)
       {
         longString = secondString + longString.Remove(0, firstStringLength);
-        Console.WriteLine(output);
       }
       if(longString.LastIndexOf(firstString) == (longString.Length - firstStringLength))
       {
         int longStringLength = longString.Length;
-
         longString = longString.Remove(longStringLength - firstStringLength) + secondString;
       }
-      firstString = " " + firstString +" ";
-      secondString = " " + secondString + " ";
-      output = longString.Replace(firstString, secondString);
+      for (int i = 0; i<specialCharacter.Length; i++)
+      {
+        for (int j = 0; j<specialCharacter.Length; j++)
+        {
+          dummyFirst = specialCharacter[i] + firstString + specialCharacter[j];
+          dummySecond = specialCharacter[i] + secondString + specialCharacter[j];
+          longString = longString.Replace(dummyFirst, dummySecond);
+        }
+      }
+
 
 
 
@@ -58,7 +66,7 @@ namespace FindReplaceProject.Objects
 
       Console.WriteLine(output);
 
-      return output;
+      return longString;
     }
   }
 }
