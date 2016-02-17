@@ -31,7 +31,32 @@ namespace FindReplaceProject.Objects
     }
     public string Replace()
     {
-      string output = this.GetLongString().Replace(this.GetFirstString(), this.GetSecondString());
+      string output = "";
+      string longString = this.GetLongString();
+      string firstString = this.GetFirstString();
+      string secondString = this.GetSecondString();
+      int firstStringLength = firstString.Length;
+
+      if (longString.IndexOf(firstString) == 0)
+      {
+        longString = secondString + longString.Remove(0, firstStringLength);
+        Console.WriteLine(output);
+      }
+      if(longString.LastIndexOf(firstString) == (longString.Length - firstStringLength))
+      {
+        int longStringLength = longString.Length;
+
+        longString = longString.Remove(longStringLength - firstStringLength) + secondString;
+      }
+      firstString = " " + firstString +" ";
+      secondString = " " + secondString + " ";
+      output = longString.Replace(firstString, secondString);
+
+
+
+
+
+      Console.WriteLine(output);
 
       return output;
     }
